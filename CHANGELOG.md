@@ -4,6 +4,20 @@
 
 <br>
 
+## main
+- [breaking] remove WebExtensionActor.connect() and get_target() — removed from FF151 spec
+- [breaking] remove SourceActor.get_breakpoint_positions() — use get_breakpoint_positions_compressed()
+- [breaking] rename WebConsoleActor.clear_messages_cache() → clear_messages_cache_async()
+- add new spec methods: RootActor.connect(), TabActor.navigate_to()/go_back()/go_forward()/reload_descriptor()
+- add ProcessActor.reload_descriptor(), WebExtensionActor.terminate_background_script()/reload_descriptor()/get_watcher()
+- add WindowGlobalActor.reconfigure(), WalkerActor.get_idref_node()
+- add NodeActor.enable_event_listener()/disable_event_listener()
+- add NetworkEventActor.get_early_hints_response_headers()/get_stack_trace()
+- add NetworkParentActor.override()/remove_override()
+- add IndexedDBStorageActor.remove_all(), StringActor.release()
+- add TargetConfigurationActor.is_javascript_enabled(), AddonsActor.uninstall_addon()
+- run tests on Firefox 151.0 successfully
+
 ## 1.0.3
 - introduce semantic versioning
 - [breaking] Events.RESOURCE_AVAILABLE_FROM changed to Events.RESOURCES_AVAILABLE_ARRAY 
