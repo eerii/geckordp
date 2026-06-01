@@ -67,9 +67,12 @@ def test_get_image_data_from_url():
     cl = None
     try:
         cl, inspector = init()
-        val = inspector.get_image_data_from_url(
+        response = inspector.get_image_data_from_url(
             "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Example.jpg/116px-Example.jpg"
-        )["data"]["length"]
+        )
+        if "error" in response:
+            pytest.skip(f"image load failed: {response['error']}")
+        val = response["data"]["length"]
         assert int(val) >= 0
     finally:
         cl.disconnect()

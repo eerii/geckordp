@@ -142,10 +142,10 @@ def test_autocomplete():
         cl.disconnect()
 
 
-def test_clear_messages_cache():
+def test_clear_messages_cache_async():
     cl = None
     try:
         cl, console = init()
-        console.clear_messages_cache()
+        console.clear_messages_cache_async()
     finally:
         cl.disconnect()

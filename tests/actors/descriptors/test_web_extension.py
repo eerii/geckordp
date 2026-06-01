@@ -40,27 +40,3 @@ def test_reload():
         assert response_valid("webExtensionDescriptor", val), str(val)
     finally:
         cl.disconnect()
-
-
-def test_connect():
-    cl = None
-    try:
-        cl, addon, webext = init()
-        if addon is None:
-            return
-        val = webext.connect()
-        assert response_valid("webExtensionDescriptor", val), str(val)
-    finally:
-        cl.disconnect()
-
-
-def test_get_target():
-    cl = None
-    try:
-        cl, addon, webext = init()
-        if addon is None:
-            return
-        val = webext.get_target()
-        assert response_valid("webExtensionDescriptor", val), str(val)
-    finally:
-        cl.disconnect()

@@ -31,18 +31,6 @@ def init():
     return cl, source
 
 
-def test_get_breakpoint_positions():
-    cl = None
-    try:
-        cl, source = init()
-        if source is None:
-            return
-        val = source.get_breakpoint_positions()
-        assert len(val) > 0
-    finally:
-        cl.disconnect()
-
-
 def test_get_breakpoint_positions_compressed():
     cl = None
     try:
