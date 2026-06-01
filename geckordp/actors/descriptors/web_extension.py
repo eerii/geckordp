@@ -10,8 +10,26 @@ class WebExtensionActor(Actor):
     def reload(self):
         return self.client.send_receive({"to": self.actor_id, "type": "reload"})
 
-    def connect(self):
-        return self.client.send_receive({"to": self.actor_id, "type": "connect"})
+    def terminate_background_script(self):
+        return self.client.send_receive(
+            {"to": self.actor_id, "type": "terminateBackgroundScript"}
+        )
 
-    def get_target(self):
-        return self.client.send_receive({"to": self.actor_id, "type": "getTarget"})
+    def reload_descriptor(self, bypass_cache=False):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "reloadDescriptor",
+                "bypassCache": bypass_cache,
+            }
+        )
+
+    def get_watcher(self, is_server_target_switching_enabled=False):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "getWatcher",
+                "isServerTargetSwitchingEnabled": is_server_target_switching_enabled,
+            }
+        )
+

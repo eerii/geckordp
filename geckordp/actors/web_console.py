@@ -115,10 +115,10 @@ class WebConsoleActor(Actor):
             }
         )
 
-    def clear_messages_cache(self):
-        return self.client.send(
+    def clear_messages_cache_async(self):
+        return self.client.send_receive(
             {
                 "to": self.actor_id,
-                "type": "clearMessagesCache",
+                "type": "clearMessagesCacheAsync",
             }
         )

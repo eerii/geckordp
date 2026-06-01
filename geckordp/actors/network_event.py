@@ -95,9 +95,18 @@ class NetworkEventActor(Actor):
             }
         )
 
-    # todo: "Spec for 'netEvent' specifies a 'getStackTrace' method that isn't implemented by the actor",
-    """ def get_stack_trace(self):
-        return self.client.send_receive({
-            "to": self.actor_id,
-            "type": "getStackTrace",
-        }) """
+    def get_early_hints_response_headers(self):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "getEarlyHintsResponseHeaders",
+            }
+        )
+
+    def get_stack_trace(self):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "getStackTrace",
+            }
+        )

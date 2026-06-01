@@ -69,3 +69,11 @@ class TargetConfigurationActor(Actor):
                 "configuration": args,
             }
         )
+
+    def is_javascript_enabled(self):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "isJavascriptEnabled",
+            }
+        )

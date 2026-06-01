@@ -146,6 +146,16 @@ class WalkerActor(Actor):
             }
         )
 
+    def get_idref_node(self, dom_node_actor: str, id_: str):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "getIdrefNode",
+                "node": dom_node_actor,
+                "id": id_,
+            }
+        )
+
     def query_selector_all(self, dom_node_actor: str, selector: str):
         return self.client.send_receive(
             {

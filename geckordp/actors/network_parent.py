@@ -95,3 +95,22 @@ class NetworkParentActor(Actor):
                 "filters": filters,
             }
         )
+
+    def override(self, url: str, path: str):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "override",
+                "url": url,
+                "path": path,
+            }
+        )
+
+    def remove_override(self, url: str):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "removeOverride",
+                "url": url,
+            }
+        )

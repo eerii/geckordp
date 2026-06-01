@@ -172,7 +172,7 @@ class CacheStorageActor(_impl_storage, _impl_remove_item, _impl_remove_all__host
     """https://github.com/mozilla/gecko-dev/blob/master/devtools/shared/specs/storage.js"""
 
 
-class IndexedDBStorageActor(_impl_storage, _impl_remove_item):
+class IndexedDBStorageActor(_impl_storage, _impl_remove_item, _impl_remove_all__host_name):
     """https://github.com/mozilla/gecko-dev/blob/master/devtools/shared/specs/storage.js"""
 
     def remove_database(self, host: str, name: str):

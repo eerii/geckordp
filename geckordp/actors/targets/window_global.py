@@ -96,3 +96,12 @@ class WindowGlobalActor(Actor):
                 "flags": flags,
             }
         )
+
+    def reconfigure(self, options: dict):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "reconfigure",
+                "options": options,
+            }
+        )

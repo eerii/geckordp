@@ -8,6 +8,12 @@ class RootActor(ResourceActor):
         super().__init__(*args, **kwargs)
         self.actor_id = "root"
 
+    def connect(self, frontend_version=""):
+        args = {"to": "root", "type": "connect"}
+        if frontend_version != "":
+            args["frontendVersion"] = frontend_version
+        return self.client.send_receive(args)
+
     def get_root(self):
         return self.client.send_receive({"to": "root", "type": "getRoot"})
 

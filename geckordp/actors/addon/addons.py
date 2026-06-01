@@ -19,3 +19,12 @@ class AddonsActor(Actor):
         )
         # todo: replace with extract expression
         return response.get("addon", response)  # type: ignore
+
+    def uninstall_addon(self, addon_id: str):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "uninstallAddon",
+                "addonId": addon_id,
+            }
+        )

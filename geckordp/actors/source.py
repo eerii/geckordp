@@ -7,31 +7,6 @@ class SourceActor(Actor):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    def get_breakpoint_positions(
-        self,
-        start_line=0,
-        start_column=0,
-        end_line=10**10,
-        end_column=10**10,
-    ):
-        return self.client.send_receive(
-            {
-                "to": self.actor_id,
-                "type": "getBreakpointPositions",
-                "query": {
-                    "start": {
-                        "line": start_line,
-                        "column": start_column,
-                    },
-                    "end": {
-                        "line": end_line,
-                        "column": end_column,
-                    },
-                },
-            },
-            "positions",
-        )
-
     def get_breakpoint_positions_compressed(
         self,
         start_line=0,

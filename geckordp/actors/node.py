@@ -80,6 +80,24 @@ class NodeActor(Actor):
             "events",
         )
 
+    def enable_event_listener(self, event_listener_info_id: str):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "enableEventListener",
+                "eventListenerInfoId": event_listener_info_id,
+            }
+        )
+
+    def disable_event_listener(self, event_listener_info_id: str):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "disableEventListener",
+                "eventListenerInfoId": event_listener_info_id,
+            }
+        )
+
     def modify_attributes(self, modifications: list):
         return self.client.send_receive(
             {

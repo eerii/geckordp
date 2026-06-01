@@ -17,3 +17,11 @@ class StringActor(Actor):
             },
             "substring",
         )
+
+    def release(self):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "release",
+            }
+        )

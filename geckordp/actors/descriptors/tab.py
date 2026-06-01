@@ -37,3 +37,32 @@ class TabActor(Actor):
         if is_popup_debugging_enabled is not None:
             args["isPopupDebuggingEnabled"] = is_popup_debugging_enabled
         return self.client.send_receive(args)
+
+    def navigate_to(self, url: str, wait_for_load=True):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "navigateTo",
+                "url": url,
+                "waitForLoad": wait_for_load,
+            }
+        )
+
+    def go_back(self):
+        return self.client.send_receive(
+            {"to": self.actor_id, "type": "goBack"}
+        )
+
+    def go_forward(self):
+        return self.client.send_receive(
+            {"to": self.actor_id, "type": "goForward"}
+        )
+
+    def reload_descriptor(self, bypass_cache=False):
+        return self.client.send_receive(
+            {
+                "to": self.actor_id,
+                "type": "reloadDescriptor",
+                "bypassCache": bypass_cache,
+            }
+        )
