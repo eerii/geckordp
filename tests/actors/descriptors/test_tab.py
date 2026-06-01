@@ -47,3 +47,43 @@ def test_get_watcher():
         assert "watcher" in val
     finally:
         cl.disconnect()
+
+
+def test_navigate_to():
+    cl = None
+    try:
+        cl, tab = init()
+        val = tab.navigate_to("https://example.com/")
+        assert response_valid("tabDescriptor", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_go_back():
+    cl = None
+    try:
+        cl, tab = init()
+        val = tab.go_back()
+        assert response_valid("tabDescriptor", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_go_forward():
+    cl = None
+    try:
+        cl, tab = init()
+        val = tab.go_forward()
+        assert response_valid("tabDescriptor", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_reload_descriptor():
+    cl = None
+    try:
+        cl, tab = init()
+        val = tab.reload_descriptor()
+        assert response_valid("tabDescriptor", val), str(val)
+    finally:
+        cl.disconnect()

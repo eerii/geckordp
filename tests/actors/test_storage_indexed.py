@@ -86,3 +86,23 @@ def test_remove_item():
         assert response_valid("indexedDB", val), str(val)
     finally:
         cl.disconnect()
+
+
+def test_remove_all():
+    cl = None
+    try:
+        cl, indexed = init()
+        val = indexed.remove_all("https://example.com", "x")
+        assert response_valid("indexedDB", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_remove_database():
+    cl = None
+    try:
+        cl, indexed = init()
+        val = indexed.remove_database("https://example.com", "x")
+        assert response_valid("indexedDB", val), str(val)
+    finally:
+        cl.disconnect()

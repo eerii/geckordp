@@ -35,3 +35,13 @@ def test_update_configuration():
         assert response_valid("target-configuration", val), str(val)
     finally:
         cl.disconnect()
+
+
+def test_is_javascript_enabled():
+    cl = None
+    try:
+        cl, target_cfg = init()
+        val = target_cfg.is_javascript_enabled()["javascriptEnabled"]
+        assert isinstance(val, bool)
+    finally:
+        cl.disconnect()

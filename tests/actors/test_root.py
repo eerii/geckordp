@@ -102,3 +102,36 @@ def test_request_types():
         assert "getRoot" in types and "listTabs" in types
     finally:
         cl.disconnect()
+
+
+def test_connect():
+    cl = None
+    try:
+        cl, root = init()
+        val = root.connect()
+        assert response_valid("root", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_current_tab():
+    cl = None
+    try:
+        cl, root = init()
+        val = root.current_tab()
+        assert val.get("url", "") == "https://example.com/"
+    finally:
+        cl.disconnect()
+
+
+def test_get_process():
+    cl = None
+    try:
+        cl, root = init()
+        processes = root.list_processes()
+        if len(processes) == 0:
+            return
+        val = root.get_process(processes[0]["id"])["processDescriptor"]
+        assert val == processes[0]
+    finally:
+        cl.disconnect()

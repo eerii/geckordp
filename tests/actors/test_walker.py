@@ -126,6 +126,17 @@ def test_query_selector():
         cl.disconnect()
 
 
+def test_get_idref_node():
+    cl = None
+    try:
+        cl, walker = init()
+        val = walker.document()
+        val = walker.get_idref_node(val["actor"], "")
+        assert isinstance(val, dict)
+    finally:
+        cl.disconnect()
+
+
 def test_query_selector_all():
     cl = None
     try:
@@ -274,6 +285,20 @@ def test_set_outer_html():
         val = walker.next_sibling(val["actor"])
         html = walker.outer_html(val["actor"])
         val = walker.set_outer_html(val["actor"], html)
+        assert response_valid("domwalker", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_insert_adjacent_html():
+    cl = None
+    try:
+        cl, walker = init()
+        val = walker.document()
+        val = walker.query_selector(val["actor"], "body h1")["node"]
+        val = walker.insert_adjacent_html(
+            val["actor"], WalkerActor.Position.BEFORE_END, "<p>test</p>"
+        )
         assert response_valid("domwalker", val), str(val)
     finally:
         cl.disconnect()

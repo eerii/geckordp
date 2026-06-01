@@ -124,5 +124,17 @@ def test_network_event():
         val = network_event.get_security_info()["securityInfo"]["state"]
         assert val == "secure"
 
+        # get_early_hints_response_headers
+        val = network_event.get_early_hints_response_headers()
+        assert response_valid("netEvent", val), str(val)
+
+        # get_stack_trace
+        val = network_event.get_stack_trace()
+        assert response_valid("netEvent", val), str(val)
+
+        # release
+        val = network_event.release()
+        assert response_valid("netEvent", val), str(val)
+
     finally:
         cl.disconnect()

@@ -110,6 +110,26 @@ def test_get_event_listener_info():
         cl.disconnect()
 
 
+def test_enable_event_listener():
+    cl = None
+    try:
+        cl, node = init()
+        val = node.enable_event_listener("")
+        assert response_valid("domnode", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_disable_event_listener():
+    cl = None
+    try:
+        cl, node = init()
+        val = node.disable_event_listener("")
+        assert response_valid("domnode", val), str(val)
+    finally:
+        cl.disconnect()
+
+
 def test_modify_attributes():
     cl = None
     try:

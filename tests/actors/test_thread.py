@@ -47,6 +47,16 @@ def test_interrupt_resume():
         cl.disconnect()
 
 
+def test_is_attached():
+    cl = None
+    try:
+        cl, thread = init()
+        val = thread.is_attached()
+        assert val == True
+    finally:
+        cl.disconnect()
+
+
 def test_frames():
     cl = None
     try:
@@ -68,17 +78,14 @@ def test_sources():
         cl.disconnect()
 
 
-# see thread.py
-""" 
 def test_skip_breakpoints():
     cl = None
     try:
         cl, thread = init()
-        val = thread.skip_breakpoints(True)
-        logdict(val)
+        val = thread.skip_breakpoints({})
+        assert response_valid("thread", val), str(val)
     finally:
         cl.disconnect()
-"""
 
 
 def test_dump_thread():
@@ -91,17 +98,14 @@ def test_dump_thread():
         cl.disconnect()
 
 
-# see thread.py
-""" 
 def test_dump_pools():
     cl = None
     try:
         cl, thread = init()
         val = thread.dump_pools()
-        logdict(val)
+        assert response_valid("thread", val), str(val)
     finally:
         cl.disconnect()
-"""
 
 
 def test_set_breakpoint():
@@ -217,17 +221,3 @@ def test_toggle_event_logging():
         assert response_valid("thread", val), str(val)
     finally:
         cl.disconnect()
-
-
-""" 
-
-def test_():
-    cl = None
-    try:
-        cl, thread = init()
-        val = thread.
-        logdict(val)
-    finally:
-        cl.disconnect()
-
- """

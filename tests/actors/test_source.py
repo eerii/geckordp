@@ -79,6 +79,18 @@ def test_set_pause_point():
         cl.disconnect()
 
 
+def test_set_pause_points():
+    cl = None
+    try:
+        cl, source = init()
+        if source is None:
+            return
+        val = source.set_pause_points()
+        assert response_valid("source", val), str(val)
+    finally:
+        cl.disconnect()
+
+
 def test_blackbox():
     cl = None
     try:

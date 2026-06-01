@@ -105,3 +105,43 @@ def test_get_blocked_urls():
         assert len(val) == 0
     finally:
         cl.disconnect()
+
+
+def test_override():
+    cl = None
+    try:
+        cl, network_parent = init()
+        val = network_parent.override("https://example.com/", "")
+        assert response_valid("networkParent", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_remove_override():
+    cl = None
+    try:
+        cl, network_parent = init()
+        val = network_parent.remove_override("https://example.com/")
+        assert response_valid("networkParent", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_block_request():
+    cl = None
+    try:
+        cl, network_parent = init()
+        val = network_parent.block_request({"url": "https://example.com"})
+        assert response_valid("networkParent", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_unblock_request():
+    cl = None
+    try:
+        cl, network_parent = init()
+        val = network_parent.unblock_request({"url": "https://example.com"})
+        assert response_valid("networkParent", val), str(val)
+    finally:
+        cl.disconnect()

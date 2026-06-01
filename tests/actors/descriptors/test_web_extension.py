@@ -40,3 +40,39 @@ def test_reload():
         assert response_valid("webExtensionDescriptor", val), str(val)
     finally:
         cl.disconnect()
+
+
+def test_terminate_background_script():
+    cl = None
+    try:
+        cl, addon, webext = init()
+        if addon is None:
+            return
+        val = webext.terminate_background_script()
+        assert response_valid("webExtensionDescriptor", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_reload_descriptor():
+    cl = None
+    try:
+        cl, addon, webext = init()
+        if addon is None:
+            return
+        val = webext.reload_descriptor()
+        assert response_valid("webExtensionDescriptor", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_get_watcher():
+    cl = None
+    try:
+        cl, addon, webext = init()
+        if addon is None:
+            return
+        val = webext.get_watcher()["actor"]
+        assert "watcher" in val
+    finally:
+        cl.disconnect()

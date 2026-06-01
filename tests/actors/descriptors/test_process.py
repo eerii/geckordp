@@ -37,3 +37,13 @@ def test_get_watcher():
         assert "watcher" in val
     finally:
         cl.disconnect()
+
+
+def test_reload_descriptor():
+    cl = None
+    try:
+        cl, process = init()
+        val = process.reload_descriptor()
+        assert response_valid("processDescriptor", val), str(val)
+    finally:
+        cl.disconnect()

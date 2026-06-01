@@ -21,8 +21,18 @@ def init():
 def test_install_temporary_addon():
     cl = None
     try:
-        cl, _addons = init()
-        # todo may not change anyway
-        # val = addons.install_temporary_addon("")
+        cl, addons = init()
+        val = addons.install_temporary_addon("")
+        assert response_valid("addons", val), str(val)
+    finally:
+        cl.disconnect()
+
+
+def test_uninstall_addon():
+    cl = None
+    try:
+        cl, addons = init()
+        val = addons.uninstall_addon("")
+        assert response_valid("addons", val), str(val)
     finally:
         cl.disconnect()

@@ -112,11 +112,21 @@ def test_list_workers():
         cl.disconnect()
 
 
-# todo dunno about this function
-""" def test_log_in_page():
+def test_reconfigure():
     cl = None
     try:
         cl, browser = init()
-        val = browser.log_in_page()
+        val = browser.reconfigure({})
+        assert response_valid("windowGlobalTarget", val), str(val)
     finally:
-        cl.disconnect() """
+        cl.disconnect()
+
+
+def test_log_in_page():
+    cl = None
+    try:
+        cl, browser = init()
+        val = browser.log_in_page("test", "info", "")
+        assert response_valid("windowGlobalTarget", val), str(val)
+    finally:
+        cl.disconnect()
