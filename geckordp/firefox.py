@@ -46,8 +46,6 @@ class Firefox:
             # pylint: disable=anomalous-backslash-in-string
             paths = [
                 Path.home().joinpath("Library/Application Support/Firefox/"),
-                Path.home().joinpath("Library/Application\ Support/Firefox/"),
-                Path.home().joinpath("Library/Application Support/Firefox/"),
                 Path.home().joinpath("Library/Mozilla/Firefox/"),
             ]
             for p in paths:
